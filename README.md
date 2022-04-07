@@ -1,4 +1,4 @@
-# Group_2
+# DataExplorer
 Group 2 repository for group project. 
 
 R package: DataExplorer
