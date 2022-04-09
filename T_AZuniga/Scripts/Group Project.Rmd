@@ -1,0 +1,96 @@
+---
+title: "Group Project- Tadeo"
+author: "Tadeo Aviles Zuniga"
+date: "4/8/2022"
+output: html_document
+---
+## Introduction to Data Explorer via QQplot and PCA 
+These examples will give some insight into ways to visualize data through some basic statistical methods of regression, applying a qqplot and principal component analysis. 
+
+Dataset: ChemData 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+```{r load data, include = FALSE}
+library(here)
+library(nycflights13)
+library(DataExplorer)
+library("viridis")          
+library(paletteer)
+library(kableExtra)
+library(prettydoc)
+library(dplyr)
+library(devtools)
+library(tidyverse)
+library(ggridges)
+library(babynames)
+library(ggthemes)
+library(patchwork)
+
+```
+
+```{Data}
+#read in kaggle data
+ChemData <- read_csv(here("week_4", "data", "chemicaldata_maunalua.csv"))
+View(ChemData)
+
+ChemData_clean <-ChemData %>% 
+  filter(complete.cases(.)) %>% #filter out everything that is not a complete row 
+  separate(col = Tide_time, 
+           into = c("Tide", "Time"), #Separate into two col's
+           sep = "_", # seperate  by_
+           remove = FALSE) %>% #Keeps the original Tide coloumn
+  filter( Time == "Day") %>%  #filter$time~day
+  rename("Temperature" = Temp_in)
+
+
+ChemData_wide <- ChemData_clean %>% 
+  pivot_longer(cols = Temperature:percent_sgd, # the cols you want to pivot. This says select the temp to percent SGD cols  
+               names_to = "Variables", # the names of the new cols with all the column names 
+               values_to = "Values") %>% # names of the new column with all the values 
+  group_by(Variables, Season,  Zone) %>% 
+  summarise(mean_vals = mean(Values, na.rm = TRUE),
+            var_vals = var(Values, na.rm = TRUE)) %>% 
+  pivot_wider(names_from = Variables, ### pivot_wider changes view of data 
+              values_from = c(mean_vals,var_vals))
+```
+**QQ Plot**
+```{QQ Plot}
+
+# Step 1
+qq_data <- ChemData_wide[, c("Season", "mean_vals_pH")]
+plot_qq(qq_data, sampled_rows = 1000L)
+
+# Step 2 logtransform data to fit the regression line
+log_qq_data <- update_columns(qq_data, 2, function(x) log(x + 1))
+plot_qq(log_qq_data[,c(2)], sampled_rows = 1000L)
+
+
+plot_qq(qq_data, by = "Season", sampled_rows = 1000L)
++
+  scale_y_continuous(limits =c(500,5000))
+
+
+plot_correlation(na.omit(final_data), maxcat = 5L)
+plot_correlation(na.omit(p), type = "c")
+plot_correlation(na.omit(p), type = "d")
+
+```
+
+
+# **Principal Component Analysis (PCA) Plot ** #
+### **Description** ### 
+
+```{PCA, fig.width = 6, fig.height=7, fig.asp=1.2, fig.align='center'}
+pca_df <- na.omit(final_data[, c("origin", "dep_delay", "arr_delay", "air_time", "year_planes", "seats")])
+
+plot_prcomp(pca_df, variance_cap = 0.9, nrow = 2L, ncol = 2L)
+
+
+```
+
+
+
+
