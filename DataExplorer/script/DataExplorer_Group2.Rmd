@@ -31,7 +31,7 @@ By default, this function will ignore any columns that have more than 50 possibl
 
 
 ```{r plot_bar_1}
-plot_bar(chem)
+plot_bar(chem)  #make bar plots for all discrete variables using the chem data
 ```
 
 Some other useful arguments include:
@@ -46,13 +46,20 @@ Some other useful arguments include:
 If you would like to see the distribution of another discrete column within the bars, you can add by = "column". This will essentially create stacked columns with color mapped to that specified column. Let's also add a title and a ggplot2 theme. 
 
 ```{r plot_bar_2}
-plot_bar(chem, by = "Site", title = "Distribution of Tidal Zones, Seasons, and Tide Time by Site", theme = theme_bw())
+plot_bar(chem,  #Make bar plots for discrete variables with the chem data
+         by = "Site",  #Map colors within the bars to Site
+         title = "Distribution of Discrete Variables by Site",  #Add title
+         theme = theme_bw())  #Change theme
 ```
 
 Finally, let's try altering the position, changing it to "dodge" so that we see grouped bars instead of stacked bars for the Site variable. 
 
 ```{r plot_bar_3}
-plot_bar(chem, by = "Site", title = "Distribution of Tidal Zones, Seasons, and Tide Time by Site", theme = theme_bw(), by_position = "dodge")
+plot_bar(chem, 
+         by = "Site", 
+         title = "Distribution of Discrete Variables by Site", 
+         theme = theme_bw(), 
+         by_position = "dodge")  #Change position to dodge, making grouped bars. 
 ```
 
 All of these settings allow you to easily visualize your discrete data and identify patterns. 
@@ -63,7 +70,8 @@ All of these settings allow you to easily visualize your discrete data and ident
 Let's say you want to see how the values of a discrete character column relate to the values of continuous numeric columns, allowing you identify other patterns in your data. The plot_boxplot feature allows you to look at the distribution of numeric values for a chosen discrete column. Let's look at the distributions of all numeric columns when we organize the data by Zone.
 
 ```{r plot_boxplot}
-plot_boxplot(chem, by = "Zone")
+plot_boxplot(chem,  #Make boxplots using chem data frame
+             by = "Zone")  #Organize by the discrete variable Zone
 ```
 
 This allows you to see some patterns that may be interesting. The Near Spring Zone, for example, shows different value distributions than the other zones for several of the variables, including NN (Nitrate+nitrite), percent_sgd (Relative amount of submarine groundwater discharge in the water), pH, Phosphate, Salinity, Silicate, and TA (Total alkalinity). Understanding your data set and how variables may be related is important, however. For example, the distribution of latitude and longitude by zone is not particularly useful. 
