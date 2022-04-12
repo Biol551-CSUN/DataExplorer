@@ -43,12 +43,11 @@ Some other useful arguments include:
 * [nrow = ] allows you to change the number of plots in a row per page. The default is 3L.
 * [ncol = ] allows you to change the number of plots in a column per page. The default is 3L. 
 
-If you would like to see the distribution of another discrete column within the bars, you can add by = "column". This will essentially create stacked columns with color mapped to that specified column. Let's also add a title and a ggplot2 theme. 
+If you would like to see the distribution of another discrete column within the bars, you can add by = "column". This will essentially create stacked columns with color mapped to that specified column. Let's also add a ggplot2 theme. 
 
 ```{r plot_bar_2}
 plot_bar(chem,  #Make bar plots for discrete variables with the chem data
          by = "Site",  #Map colors within the bars to Site
-         title = "Distribution of Discrete Variables by Site",  #Add title
          theme = theme_bw())  #Change theme
 ```
 
@@ -57,7 +56,6 @@ Finally, let's try altering the position, changing it to "dodge" so that we see 
 ```{r plot_bar_3}
 plot_bar(chem, 
          by = "Site", 
-         title = "Distribution of Discrete Variables by Site", 
          theme = theme_bw(), 
          by_position = "dodge")  #Change position to dodge, making grouped bars. 
 ```
