@@ -11,3 +11,15 @@ Group member contributions:
 * Sally Heo:
 * Tadeo Zuniga:
 * Heather Carstensen
+
+DataExplorer is a package designed to assist users in the initial exploration of their data set. With very simple lines of code, the user can clean up their data, visualize values and distributions for each variable, and examine how variables relate to each other. The goal of this package is to allow the user to easily identify patterns within their data without spending time coding individual plots, and so is ideal for Exploratory Data Analysis (EDA). This package utilizes other useful data processing and visualization packages, such as ggplot2, data.table, reshape2, scales, and gridExtra. 
+
+See these links for more information about the DataExplorer package:
+* [CRAN page](https://cran.r-project.org/web/packages/DataExplorer/index.html)
+* [Introductory Vignette](https://cran.r-project.org/web/packages/DataExplorer/vignettes/dataexplorer-intro.html#bar-charts) This vignette was written by the creator of the DataExplorer package, Boxuan Cui, and includes examples of the package functions. 
+* [GitHub page](https://github.com/boxuancui/DataExplorer)
+* [A list of articles that discuss DataExplorer](https://github.com/boxuancui/DataExplorer/wiki/Articles)
+
+For this project, we are focusing on the DataExplorer functions that allow for data visualization. The functions we will cover are:
+* plot_bar, which uses bar charts to show value distributions of discrete variables. 
+* plot_boxplot, which uses boxplots to examine the distributions of continuous variables when grouped by the values of a chosen discrete variable.  
