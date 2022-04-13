@@ -1,11 +1,11 @@
 # DataExplorer
 Group 2 repository for group project. 
 
-R package: DataExplorer
+**R package:** DataExplorer
 
-Group members: Cynthia Petrossian, Sally Heo, Tadeo Zuniga, Heather Carstensen.
+**Group members:** Cynthia Petrossian, Sally Heo, Tadeo Zuniga, Heather Carstensen.
 
-Group member contributions:
+**Group member contributions:**
 
 * Cynthia Petrossian:
 * Sally Heo:
