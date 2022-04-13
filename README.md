@@ -25,3 +25,4 @@ For this project, we are focusing on the DataExplorer functions that allow for d
 * plot_boxplot, which uses boxplots to examine the distributions of continuous variables when grouped by the values of a chosen discrete variable.  
 * plot_correlation
 * create_report
+* configure_report
