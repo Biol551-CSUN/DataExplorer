@@ -23,3 +23,5 @@ See these links for more information about the DataExplorer package:
 For this project, we are focusing on the DataExplorer functions that allow for data visualization. The functions we will cover are:
 * plot_bar, which uses bar charts to show value distributions of discrete variables. 
 * plot_boxplot, which uses boxplots to examine the distributions of continuous variables when grouped by the values of a chosen discrete variable.  
+* plot_correlation
+* create_report
