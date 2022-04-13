@@ -27,7 +27,7 @@ chem <- read_csv(here("DataExplorer", "data", "chemicaldata_maunalua.csv"))
 
 If you would like to see the frequency distribution of discrete variables, use the plot_bar function. This will display bar charts showing the frequency of each character value, faceted by column. 
 
-By default, this function will ignore any columns that have more than 50 possible character values, though this can be altered with the argument maxcat = __.  
+By default, this function will ignore any columns that have more than 50 different character values. This threshold can be altered with the argument "maxcat = "  
 
 
 ```{r plot_bar_1}
@@ -38,12 +38,12 @@ Some other useful arguments include:
 
 * [by = ], allows you to map color within the bars to a second discrete variable. The default setting creates stacked bars with colors corresponding to that variable (see example below). 
 * [by_position = ""] allows you to change the position argument if you are creating  bars "by" another variable. The default is "fill". Another option is "dodge", which will instead display grouped bars side-by-side rather than stacked bars (see example below).
-* [title = ""] allows you to add a title to the set of plots. The default is NULL, or no title. 
-* [ggtheme = ] allows you to apply a ggplot2 theme to your plots.
-* [nrow = ] allows you to change the number of plots in a row per page. The default is 3L.
-* [ncol = ] allows you to change the number of plots in a column per page. The default is 3L. 
+* [title = ""] allows you to add a title to the set of plots.
+* [ggtheme = ] allows you to apply a ggplot2 theme to the plots.
+* [nrow = ] allows you to change the number of plots displayed per row. The default is 3 per row (3L). 
+* [ncol = ] allows you to change the number of plots per column. The default is 3 per column (3L).
 
-If you would like to see the distribution of another discrete column within the bars, you can add by = "column". This will essentially create stacked columns with color mapped to that specified column. Let's also add a ggplot2 theme. 
+If you would like to see the distribution of another discrete column within the bars, you can add by = "column name", and now color within each bar will be mapped to that second discrete variable. Let's also add a ggplot2 theme. 
 
 ```{r plot_bar_2}
 plot_bar(chem,  #Make bar plots for discrete variables with the chem data
@@ -51,7 +51,7 @@ plot_bar(chem,  #Make bar plots for discrete variables with the chem data
          theme = theme_bw())  #Change theme
 ```
 
-Finally, let's try altering the position, changing it to "dodge" so that we see grouped bars instead of stacked bars for the Site variable. 
+Finally, let's change the "by_position" to "dodge" so that we see separate grouped bars instead of stacked bars for the second variable. 
 
 ```{r plot_bar_3}
 plot_bar(chem, 
@@ -60,18 +60,17 @@ plot_bar(chem,
          by_position = "dodge")  #Change position to dodge, making grouped bars. 
 ```
 
-All of these settings allow you to easily visualize your discrete data and identify patterns. 
 
 
 ## plot_boxplot Function
 
-Let's say you want to see how the values of a discrete character column relate to the values of continuous numeric columns, allowing you identify other patterns in your data. The plot_boxplot feature allows you to look at the distribution of numeric values for a chosen discrete column. Let's look at the distributions of all numeric columns when we organize the data by Zone.
+The plot_boxplot feature allows you to look at the distribution of numeric values for a chosen discrete column, so this is a way to compare discrete and numeric data. Let's look at the distributions of all numeric columns when we organize the data by Zone.
 
 ```{r plot_boxplot}
 plot_boxplot(chem,  #Make boxplots using chem data frame
              by = "Zone")  #Organize by the discrete variable Zone
 ```
 
-This allows you to see some patterns that may be interesting. The Near Spring Zone, for example, shows different value distributions than the other zones for several of the variables, including NN (Nitrate+nitrite), percent_sgd (Relative amount of submarine groundwater discharge in the water), pH, Phosphate, Salinity, Silicate, and TA (Total alkalinity). Understanding your data set and how variables may be related is important, however. For example, the distribution of latitude and longitude by zone is not particularly useful. 
+Now we see all the values for "Zone" displayed on the y-axis, and continuous numeric values for each plot are on the x-axis. This function can help the user you to identify patterns across variables. For example, the Near Spring shows different value distributions than the other zones for several of the continuous variables, including NN (Nitrate+nitrite), percent_sgd (Relative amount of submarine groundwater discharge in the water), pH, Phosphate, Salinity, Silicate, and TA (Total alkalinity). 
 
 Many of the same arguments listed above for plot_bar can also be used here for plot_boxplot. 
