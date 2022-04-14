@@ -9,10 +9,10 @@ Boxuan Cui (2020). DataExplorer: Automate Data Exploration and Treatment. R pack
 
 **Group member contributions:**
 
-* Cynthia Petrossian: Introduction, plot_histogram, plot_density
-* Sally Heo: plot_correlation, create_report, configure_report
-* Tadeo Zuniga:
-* Heather Carstensen: plot_bar and plot_boxplot functions
+* **Cynthia Petrossian:** Introduction, plot_histogram, plot_density
+* **Sally Heo:** plot_correlation, create_report, configure_report
+* **Tadeo Zuniga:** 
+* **Heather Carstensen:** plot_bar and plot_boxplot functions
 
 DataExplorer is a package designed to assist users in the initial exploration of their data set. With very simple lines of code, the user can clean up their data, visualize values and distributions for each variable, and examine how variables relate to each other. The goal of this package is to allow the user to easily identify patterns within their data without spending time coding individual plots, and so is ideal for Exploratory Data Analysis (EDA). This package utilizes other useful data processing and visualization packages, such as ggplot2, data.table, reshape2, scales, and gridExtra. 
 
@@ -20,8 +20,8 @@ DataExplorer is a package designed to assist users in the initial exploration of
   * [data:](https://github.com/Biol551-CSUN/DataExplorer/tree/main/DataExplorer/data) This data subfolder contains the dataset used to introduce our R package, DataExplorer. 
     * [Chemical Data](https://github.com/Biol551-CSUN/DataExplorer/blob/main/DataExplorer/data/chemicaldata_maunalua.csv) 
     * [Chem Data Dictionary](https://github.com/Biol551-CSUN/DataExplorer/blob/main/DataExplorer/data/chem_data_dictionary.csv)
-  * [script:](https://github.com/Biol551-CSUN/DataExplorer/tree/main/DataExplorer/script) This subfolder contains the scripts used to code the DataExplorer functions.
-  * [output:](https://github.com/Biol551-CSUN/DataExplorer/tree/main/DataExplorer/output) This subfolder contains the output plots generated from our codes. 
+  * [script:](https://github.com/Biol551-CSUN/DataExplorer/tree/main/DataExplorer/script) This script subfolder contains the scripts used to code the DataExplorer functions.
+  * [output:](https://github.com/Biol551-CSUN/DataExplorer/tree/main/DataExplorer/output) This output subfolder contains the output plots generated from all our codes. 
 
 See these links for more information about the DataExplorer package:
 * [Package document](https://cran.r-project.org/web/packages/DataExplorer/DataExplorer.pdf)
