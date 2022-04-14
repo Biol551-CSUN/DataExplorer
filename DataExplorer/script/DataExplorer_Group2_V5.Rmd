@@ -27,6 +27,7 @@ Data exploration is an important aspect to the process of visualization and crea
 Using the functions of this package, one can generate information about the data, create plots, identify missing data, and complete many more data analysis tasks with just one line of code. This is incredibly useful for EDA and cuts down the analysis time immensely.  
 
 Some of the functions we’ll be covering in this presentation include:
+
 * plot_str
 * plot_intro
 * plot_histogram
