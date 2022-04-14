@@ -31,9 +31,11 @@ See these links for more information about the DataExplorer package:
 * [A list of articles that discuss DataExplorer](https://github.com/boxuancui/DataExplorer/wiki/Articles)
 
 For this project, we are focusing on the DataExplorer functions that allow for data visualization. The functions we will cover are:
+* **plot_histogram,**
+* **plot_density,**
 * **plot_bar,** which uses bar charts to show value distributions of discrete variables. 
 * **plot_boxplot,** which uses boxplots to examine the distributions of continuous variables when grouped by the values of a chosen discrete variable.  
 * **plot_correlation,** creates a correlation heatmap for discrete functions and allows us to analyze correlation in our data
 * **create_report,** this is a very important function that creates a data profiling report of our data and makes it easier for us to intepret, analyze, and understand our data
-* **configure_report,** allows us to customize and edit each individual section of the data profiling report from the create_report function. 
+
 
