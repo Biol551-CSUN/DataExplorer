@@ -281,7 +281,7 @@ plot_correlation(chem,#Input the data, in this case it is chem
   create_report(chem, #creates a data profiling report
     output_file = "chem_data_profile_report",#Output file report generated
     output_dir = "chem_eda_dataexplorer/", #Saving in this directory
-    # y = "Temp_in", #y is the response variable, (Wanting to know if there is anything related to Temp_in)
+    y = "Temp_in", #y is the response variable, (Wanting to know if there is anything related to Temp_in)
     report_title = "Chem Data EDA Report" #Assigning Title of Report
   )
 ```
