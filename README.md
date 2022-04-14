@@ -11,7 +11,7 @@ Boxuan Cui (2020). DataExplorer: Automate Data Exploration and Treatment. R pack
 
 * **Cynthia Petrossian:** Introduction, plot_histogram, plot_density
 * **Sally Heo:** plot_correlation and create_report
-* **Tadeo Zuniga:** 
+* **Tadeo Zuniga:** plot_str, plot_intro, plot_qq
 * **Heather Carstensen:** plot_bar and plot_boxplot functions
 
 DataExplorer is a package designed to assist users in the initial exploration of their data set. With very simple lines of code, the user can clean up their data, visualize values and distributions for each variable, and examine how variables relate to each other. The goal of this package is to allow the user to easily identify patterns within their data without spending time coding individual plots, and so is ideal for Exploratory Data Analysis (EDA). This package utilizes other useful data processing and visualization packages, such as ggplot2, data.table, reshape2, scales, and gridExtra. 
@@ -31,8 +31,11 @@ See these links for more information about the DataExplorer package:
 * [A list of articles that discuss DataExplorer](https://github.com/boxuancui/DataExplorer/wiki/Articles)
 
 For this project, we are focusing on the DataExplorer functions that allow for data visualization. The functions we will cover are:
+* **plot_str**
+* **plot_intro**
 * **plot_histogram,**
 * **plot_density,**
+* **plot_qq**
 * **plot_bar,** which uses bar charts to show value distributions of discrete variables. 
 * **plot_boxplot,** which uses boxplots to examine the distributions of continuous variables when grouped by the values of a chosen discrete variable.  
 * **plot_correlation,** creates a correlation heatmap for discrete functions and allows us to analyze correlation in our data
