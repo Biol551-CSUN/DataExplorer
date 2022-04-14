@@ -37,6 +37,14 @@ Some of the functions we’ll be covering in this presentation include:
 
 As you can probably tell, a majority of these functions are plotting functions. As we go through this presentation, keep in mind all the lines of code we’ve had to use before to create a boxplot or histogram using ggplot. Today we’ll learn how to create these plots, as well as other visualizations, with very simple code – sometimes even one line.  
 
+For more information about the DataExplorer package, please see these links:
+
+* [Package document](https://cran.r-project.org/web/packages/DataExplorer/DataExplorer.pdf)
+* [CRAN page](https://cran.r-project.org/web/packages/DataExplorer/index.html)
+* [Introductory Vignette](https://cran.r-project.org/web/packages/DataExplorer/vignettes/dataexplorer-intro.html#bar-charts) This vignette was written by the creator of the DataExplorer package, Boxuan Cui, and includes examples of the package functions. 
+* [GitHub page](https://github.com/boxuancui/DataExplorer)
+* [A list of articles that discuss DataExplorer](https://github.com/boxuancui/DataExplorer/wiki/Articles)
+
 ## Load libraries and data
 
 First install the DataExplorer package:
