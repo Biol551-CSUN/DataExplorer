@@ -84,9 +84,7 @@ Taking a first look at the data, we use two functions  *plot_str()* & *plot_intr
 
 ```{r str_diagonal}
 plot_str(chem,   #Using chem data
-type = c("diagonal"),   #Chosing diagonal network diagram
-max_level = NULL,   #changing the integer threshold
-print_network = TRUE)  #Showing default print network setting
+type = c("diagonal"))   #Chosing diagonal network diagram
 
 ```
 
