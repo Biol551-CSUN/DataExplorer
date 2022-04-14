@@ -46,7 +46,7 @@ plot_density(chem)
 
 If you would like to see the frequency distribution of discrete variables, use the plot_bar function. This will display bar charts showing the frequency of each character value, faceted by column. 
 
-By default, this function will ignore any columns that have more than 50 different character values. This threshold can be altered with the argument "maxcat = "  
+By default, this function will ignore any columns that have more than 50 different character values. This threshold can be altered with the argument **maxcat =**. 
 
 
 ```{r plot_bar_1}
@@ -55,12 +55,12 @@ plot_bar(chem)  #make bar plots for all discrete variables using the chem data
 
 Some other useful arguments include:
 
-* [by = ], allows you to map color within the bars to a second discrete variable. The default setting creates stacked bars with colors corresponding to that variable (see example below). 
-* [by_position = ""] allows you to change the position argument if you are creating  bars "by" another variable. The default is "fill". Another option is "dodge", which will instead display grouped bars side-by-side rather than stacked bars (see example below).
-* [title = ""] allows you to add a title to the set of plots.
-* [ggtheme = ] allows you to apply a ggplot2 theme to the plots.
-* [nrow = ] allows you to change the number of plots displayed per row. The default is 3 per row (3L). 
-* [ncol = ] allows you to change the number of plots per column. The default is 3 per column (3L).
+* **by =**, allows you to map color within the bars to a second discrete variable. The default setting creates stacked bars with colors corresponding to that variable (see example below). 
+* **by_position =** allows you to change the position argument if you are creating  bars "by" another variable. The default is "fill". Another option is "dodge", which will instead display grouped bars side-by-side rather than stacked bars.
+* **title =** allows you to add a title to the set of plots.
+* **ggtheme =** allows you to apply a ggplot2 theme to the plots.
+* **nrow =** allows you to change the number of plots displayed per row. The default is 3 per row (3L). 
+* **ncol =** allows you to change the number of plots per column. The default is 3 per column (3L).
 
 If you would like to see the distribution of another discrete column within the bars, you can add by = "column name", and now color within each bar will be mapped to that second discrete variable. Let's also add a ggplot2 theme. 
 
@@ -82,7 +82,7 @@ plot_boxplot(chem,  #Make boxplots using chem data frame
 
 Now we see all the values for "Zone" displayed on the y-axis, and continuous numeric values for each plot are on the x-axis. This function can help the user you to identify patterns across variables. For example, the Near Spring shows different value distributions than the other zones for several of the continuous variables, including NN (Nitrate+nitrite), percent_sgd (Relative amount of submarine groundwater discharge in the water), pH, Phosphate, Salinity, Silicate, and TA (Total alkalinity). 
 
-Many of the same arguments listed above for plot_bar can also be used here for plot_boxplot. 
+Many of the same arguments listed above for plot_bar can also be used for plot_boxplot. 
 
 <<<<<<< HEAD
 ## Function: plot_correlation ##
