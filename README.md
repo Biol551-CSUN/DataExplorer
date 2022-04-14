@@ -24,6 +24,7 @@ DataExplorer is a package designed to assist users in the initial exploration of
   * [output:](https://github.com/Biol551-CSUN/DataExplorer/tree/main/DataExplorer/output) This subfolder contains the output plots generated from our codes. 
 
 See these links for more information about the DataExplorer package:
+* [Package document](https://cran.r-project.org/web/packages/DataExplorer/DataExplorer.pdf)
 * [CRAN page](https://cran.r-project.org/web/packages/DataExplorer/index.html)
 * [Introductory Vignette](https://cran.r-project.org/web/packages/DataExplorer/vignettes/dataexplorer-intro.html#bar-charts) This vignette was written by the creator of the DataExplorer package, Boxuan Cui, and includes examples of the package functions. 
 * [GitHub page](https://github.com/boxuancui/DataExplorer)
