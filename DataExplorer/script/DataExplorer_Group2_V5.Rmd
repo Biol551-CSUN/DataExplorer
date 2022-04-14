@@ -51,6 +51,7 @@ library(here)
 library(DataExplorer)
 library(tidyverse)
 library(ggthemes)
+library(magick)
 
 chem <- read_csv(here("DataExplorer", "data", "chemicaldata_maunalua.csv"))
 ```
@@ -71,25 +72,33 @@ Taking a first look at the data, we use two functions  *plot_str()* & *plot_intr
 * **print_network:** logical indicating if network graph should be plotted. Defaults to TRUE.
 ... other arguments to be passed to plotting functions. 
 
-```{r str}
-plot_str(chem,
-type = c("diagonal"), 
-max_level = NULL,
-print_network = TRUE)
-
-plot_str(chem,
-type = c("radial"), 
-max_level = NULL,
-print_network = TRUE)
+```{r str_diagonal}
+plot_str(chem,   #Using chem data
+type = c("diagonal"),   #Chosing diagonal network diagram
+max_level = NULL,   #changing the integer threshold
+print_network = TRUE)  #Showing default print network setting
 
 ```
-```{r image, echo=FALSE}
-library(magick)
-image_read( "/Users/tadeozuniga/Dropbox/My Mac (Tadeo’s MacBook Pro)/Desktop/R repository/DataExplorer/T_AZuniga/data/diagonal.png")
 
-image_read("/Users/tadeozuniga/Dropbox/My Mac (Tadeo’s MacBook Pro)/Desktop/R repository/DataExplorer/T_AZuniga/data/radial.png")
-#file.choose()
+```{r, echo = FALSE}
+image_read(here("DataExplorer", "output", "str.png")) #The plot_str outputs would not print when the file was knitted, so we added the image manually so they would be visible for the presentation. 
+
 ```
+
+
+```{r str2}
+plot_str(chem,  #Using chem data
+type = c("radial"),  #Chosing radial network diagram
+max_level = NULL,  #changing the integer threshold
+print_network = TRUE)   #Showing default print network setting
+
+```
+
+```{r, echo = FALSE}
+image_read(here("DataExplorer", "output", "str2.png")) #The plot_str outputs would not print when the file was knitted, so we added the image manually so they would be visible for the presentation. 
+```
+
+
 
 ## plot_intro
 
@@ -106,7 +115,7 @@ image_read("/Users/tadeozuniga/Dropbox/My Mac (Tadeo’s MacBook Pro)/Desktop/R 
 * theme_config a list of configurations to be passed to theme
 ## plot_intro
 ```{r plot_intro1}
-plot_intro(chem)
+plot_intro(chem)  #Running plot_intro with chem data
 ```
 
 ### plot_histogram
@@ -164,8 +173,8 @@ Quantile-Quantile plot explains the variance at a chosen distribution, example t
 
 ```{r qq_plot}
 
-qq_data <- chem[, c("Temp_in", "Salinity", "pH", "Season")] #plot basic qqplot, showing the 
-plot_qq(qq_data, sampled_rows = 1000L) 
+qq_data <- chem[, c("Temp_in", "Salinity", "pH", "Season")] #Subsetting data for qqplot
+plot_qq(qq_data, sampled_rows = 1000L) #qq plot of the data subset
 ```
 
 ```{r qq_plot2}
@@ -177,20 +186,20 @@ plot_qq(log_qq_data[,c("Temp_in", "Salinity", "pH")], sampled_rows = 1000L)
 
 For this plot the data tpe is important for the variable in question. There is a difference when running a discrete vs continuous value. In the 2nd plot it does not run the discrete value for the y dependent variable. 
 ```{r qq_plot3}
-qq_data <- chem[, c("Season", "Phosphate", "Salinity", "NN", "pH")]
+qq_data2 <- chem[, c("Season", "Phosphate", "Salinity", "NN", "pH")]  #Subsetting more data for new qq plots
 
-plot_qq(qq_data,
-        by = "Season", 
-        sampled_rows = 1000L,
-        title = "Season vs Chemical Measurements",
-        ggtheme = theme_classic())
+plot_qq(qq_data2,  #Using subset data
+        by = "Season",  #Grouping by Season
+        sampled_rows = 1000L,  #Choosing number of sampled rows
+        title = "Season vs Chemical Measurements",  #Adding a title to output
+        ggtheme = theme_classic())  #Changing ggplot2 theme
         
 
-plot_qq(qq_data,
-        by = "Phosphate", 
-        sampled_rows = 1000L,
-        title = "Phosphate vs Chemical Measurements",
-        ggtheme = theme_dark())
+plot_qq(qq_data2,  #Using subset data
+        by = "Phosphate", #Grouping by Phosphate
+        sampled_rows = 1000L,  #Choosing number of sampled rows
+        title = "Phosphate vs Chemical Measurements",  #Adding a title to output
+        ggtheme = theme_dark())  #Changing ggplot2 theme
   
    # set the plotting area into a 1*2 array
 
