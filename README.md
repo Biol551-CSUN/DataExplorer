@@ -33,8 +33,8 @@ See these links for more information about the DataExplorer package:
 For this project, we are focusing on the DataExplorer functions that allow for data visualization. The functions we will cover are:
 * **plot_str** visualizing data structure (data type, missing data, data distribution)
 * **plot_intro** print network of data structure(visualize data types by column)
-* **plot_histogram,**
-* **plot_density,**
+* **plot_histogram,** visualizing distributions for all continuous features
+* **plot_density,** visualizing density estimates for each continuous feature
 * **plot_qq** observing variation within a specific distribution. 
 * **plot_bar,** which uses bar charts to show value distributions of discrete variables. 
 * **plot_boxplot,** which uses boxplots to examine the distributions of continuous variables when grouped by the values of a chosen discrete variable.  
