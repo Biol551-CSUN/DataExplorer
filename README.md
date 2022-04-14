@@ -9,7 +9,7 @@ Boxuan Cui (2020). DataExplorer: Automate Data Exploration and Treatment. R pack
 
 **Group member contributions:**
 
-* Cynthia Petrossian:
+* Cynthia Petrossian: Introduction, plot_histogram, plot_density
 * Sally Heo: plot_correlation, create_report, configure_report
 * Tadeo Zuniga:
 * Heather Carstensen: plot_bar and plot_boxplot functions
