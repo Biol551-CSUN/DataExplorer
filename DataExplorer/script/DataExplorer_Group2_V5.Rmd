@@ -18,6 +18,8 @@ knitr::opts_chunk$set(fig.path = "../output/", echo = TRUE, warning = FALSE, mes
 
 Created by Boxuan Cui  
 
+Boxuan Cui (2020). DataExplorer: Automate Data Exploration and Treatment. R package version 0.8.2. https://cran.r-project.org/web/packages/DataExplorer/index.html
+
 **DataExplorer** is a package designed to assist users in the initial exploration of their data set. With very simple lines of code, the user can clean up their data, visualize values and distributions for each variable, and examine how variables relate to each other.  
 
 Data exploration is an important aspect to the process of visualization and creating models, but it can be very time consuming. The goal of this package is to allow the user to easily identify patterns within their data without spending time coding individual plots, and so is ideal for Exploratory Data Analysis (EDA). EDA is the process of investigating your data to identify patterns and discrepancies, test hypotheses, and check assumptions using summary statistics and graphs. This package utilizes other useful data processing and visualization packages, such as ggplot2, data.table, reshape2, scales, and gridExtra.  
