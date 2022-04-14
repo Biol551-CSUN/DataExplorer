@@ -30,6 +30,60 @@ library(ggthemes)
 chem <- read_csv(here("DataExplorer", "data", "chemicaldata_maunalua.csv"))
 ```
 
+##### **Introduction to Visualizing Data** #####
+
+Taking a first look at the data, we use two functions  *plot_str()* & *plot_intro()* to visualize our data present and missing. This includes the data type, missing values and how the data types are distributed between the different columns. 
+
+## plot_str function 
+**Arguments**
+
+* **data:** input data
+
+* **type:** type of network diagram. Defaults to diagonalNetwork.
+
+* **max_level:** integer threshold of nested level to be visualized. Minimum 1 nested level and defaults to all.
+
+* **print_network:** logical indicating if network graph should be plotted. Defaults to TRUE.
+... other arguments to be passed to plotting functions. 
+
+```{r str}
+plot_str(chem,
+type = c("diagonal"), 
+max_level = NULL,
+print_network = TRUE)
+
+plot_str(chem,
+type = c("radial"), 
+max_level = NULL,
+print_network = TRUE)
+
+```
+```{r image, echo=FALSE}
+library(magick)
+image_read( "/Users/tadeozuniga/Dropbox/My Mac (Tadeo’s MacBook Pro)/Desktop/R repository/DataExplorer/T_AZuniga/data/diagonal.png")
+
+image_read("/Users/tadeozuniga/Dropbox/My Mac (Tadeo’s MacBook Pro)/Desktop/R repository/DataExplorer/T_AZuniga/data/radial.png")
+#file.choose()
+```
+
+## plot_intro
+
+**Arguments**
+
+* data input data
+
+* geom_label_args  a list of other arguments to geom_label
+
+* title plot title
+
+* ggtheme complete ggplot2 themes. The default is theme_gray.
+
+* theme_config a list of configurations to be passed to theme
+## plot_intro
+```{r plot_intro1}
+plot_intro(chem)
+```
+
 ## Making Plots
 
 ```{r histogram}
@@ -40,6 +94,66 @@ plot_histogram(chem)
 plot_density(chem)
 ```
 
+## plot_qq Function
+Quantile-Quantile plot explains the variance at a chosen distribution, example the variance if the data were to be normally distributed. 
+
+**Arguments**
+
+* **data:** input data
+
+* **by:** feature name to be broken down by. If selecting a continuous feature, it will be grouped by 5 equal ranges, otherwise, all existing categories for a discrete feature. Default is NULL.
+
+* **sampled_rows:** number of rows to sample if data has too many rows. Default is all rows, which means do not sample.
+
+* **geom_qq_args:** a list of other arguments to geom_qq
+
+* **geom_qq_line_args:** a list of other arguments to 
+
+* **geom_qq_line:** title plot title
+
+* **ggtheme:** complete ggplot2 themes. Default is *theme_gray*.
+
+* **theme_config:** a list of configurations to be passed to *theme*
+
+* **nrow:** number of rows per page. Default is 3.
+
+* **ncol:** number of columns per page. Default is 3.
+
+* **parallel:** enable parallel? Default is FALSE.
+
+```{r qq_plot}
+
+qq_data <- chem[, c("Temp_in", "Salinity", "pH", "Season")] #plot basic qqplot, showing the 
+plot_qq(qq_data, sampled_rows = 1000L) 
+```
+
+```{r qq_plot2}
+# Step 2 log transform data to fit the regression line
+log_qq_data <- update_columns(qq_data, c("Temp_in", "Salinity", "pH"), function(x) log(x + 1)) #update columns to long parameters giving a better "fit" line 
+plot_qq(log_qq_data[,c("Temp_in", "Salinity", "pH")], sampled_rows = 1000L)
+
+```
+
+For this plot the data tpe is important for the variable in question. There is a difference when running a discrete vs continuous value. In the 2nd plot it does not run the discrete value for the y dependent variable. 
+```{r qq_plot3}
+qq_data <- chem[, c("Season", "Phosphate", "Salinity", "NN", "pH")]
+
+plot_qq(qq_data,
+        by = "Season", 
+        sampled_rows = 1000L,
+        title = "Season vs Chemical Measurements",
+        ggtheme = theme_classic())
+        
+
+plot_qq(qq_data,
+        by = "Phosphate", 
+        sampled_rows = 1000L,
+        title = "Phosphate vs Chemical Measurements",
+        ggtheme = theme_dark())
+  
+   # set the plotting area into a 1*2 array
+
+```
 
 
 ## plot_bar Function
@@ -115,62 +229,9 @@ plot_correlation(chem,#Input the data, in this case it is chem
     report_title = "Chem Data EDA Report" #Assigning Title of Report
   )
 ```
-```{r}
-plot_str(chem)
-```
-
-## QQ-Plot
-Quantile-Quantile plot explains the variance at a chosen distribution, example the variance if the data were to be normally distributed. 
-
-**Arguments**
-
-* **data:** input data
-
-* **by:** feature name to be broken down by. If selecting a continuous feature, it will be grouped by 5 equal ranges, otherwise, all existing categories for a discrete feature. Default is NULL.
-
-* **sampled_rows:** number of rows to sample if data has too many rows. Default is all rows, which means do not sample.
-
-* **geom_qq_args:** a list of other arguments to geom_qq
-
-* **geom_qq_line_args:** a list of other arguments to 
-
-* **geom_qq_line:** title plot title
-
-* **ggtheme:** complete ggplot2 themes. Default is *theme_gray*.
-
-* **theme_config:** a list of configurations to be passed to *theme*
-
-* **nrow:** number of rows per page. Default is 3.
-
-* **ncol:** number of columns per page. Default is 3.
-
-* **parallel:** enable parallel? Default is FALSE.
-
-```{r qq_plot}
-qq_data <- chem[, c("Season", "Temp_in")] #plot basic qqplot, showing the 
-plot_qq(qq_data, sampled_rows = 1000L) 
-```
-
-```{r qq_plot2}
-# Step 2 log transform data to fit the regression line
-log_qq_data <- update_columns(qq_data, c("Temp_in"), function(x) log(x + 1)) #update columns to long parameters giving a better "fit" line 
-plot_qq(log_qq_data[,c("Season", "Temp_in")], sampled_rows = 1000L)
-
-```
-
-## Principal Component Analysis (PCA-Plot)
-```{r PCA}
 
 
 
-```
-
-```{r str_plot,fig.width = 2, fig.height=2, fig.asp=1.0, fig.align='center'}
-DataExplorer::plot_str(mtcars, print_network = TRUE)
-
-
-
-```
 
 
 
