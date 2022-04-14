@@ -98,16 +98,13 @@ image_read(here("DataExplorer", "output", "str.png")) #The plot_str outputs woul
 
 ```{r str2}
 plot_str(chem,  #Using chem data
-type = c("radial"),  #Chosing radial network diagram
-max_level = NULL,  #changing the integer threshold
-print_network = TRUE)   #Showing default print network setting
-
+type = c("radial"))  #Choosing radial network diagram
+ 
 ```
 
 ```{r, echo = FALSE}
 image_read(here("DataExplorer", "output", "str2.png")) #The plot_str outputs would not print when the file was knitted, so we added the image manually so they would be visible for the presentation. 
 ```
-
 
 
 ## plot_intro
@@ -123,6 +120,7 @@ image_read(here("DataExplorer", "output", "str2.png")) #The plot_str outputs wou
 * ggtheme complete ggplot2 themes. The default is theme_gray.
 
 * theme_config a list of configurations to be passed to theme
+
 ## plot_intro
 ```{r plot_intro1}
 plot_intro(chem)  #Running plot_intro with chem data
@@ -183,14 +181,14 @@ Quantile-Quantile plot explains the variance at a chosen distribution, example t
 
 ```{r qq_plot}
 
-qq_data <- chem[, c("Temp_in", "Salinity", "pH", "Season")] #Subsetting data for qqplot
+qq_data <- chem[, c("Temp_in", "Salinity", "pH", "Season")] #Sub-setting data for qqplot
 plot_qq(qq_data, sampled_rows = 1000L) #qq plot of the data subset
 ```
 
 ```{r qq_plot2}
 # Step 2 log transform data to fit the regression line
 log_qq_data <- update_columns(qq_data, c("Temp_in", "Salinity", "pH"), function(x) log(x + 1)) #update columns to long parameters giving a better "fit" line 
-plot_qq(log_qq_data[,c("Temp_in", "Salinity", "pH")], sampled_rows = 1000L)
+plot_qq(log_qq_data[,c("Temp_in", "Salinity", "pH")], sampled_rows = 1000L)#plot logged data 
 
 ```
 
@@ -210,8 +208,6 @@ plot_qq(qq_data2,  #Using subset data
         sampled_rows = 1000L,  #Choosing number of sampled rows
         title = "Phosphate vs Chemical Measurements",  #Adding a title to output
         ggtheme = theme_dark())  #Changing ggplot2 theme
-  
-   # set the plotting area into a 1*2 array
 
 ```
 
