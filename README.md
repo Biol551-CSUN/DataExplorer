@@ -16,7 +16,7 @@ Boxuan Cui (2020). DataExplorer: Automate Data Exploration and Treatment. R pack
 
 DataExplorer is a package designed to assist users in the initial exploration of their data set. With very simple lines of code, the user can clean up their data, visualize values and distributions for each variable, and examine how variables relate to each other. The goal of this package is to allow the user to easily identify patterns within their data without spending time coding individual plots, and so is ideal for Exploratory Data Analysis (EDA). This package utilizes other useful data processing and visualization packages, such as ggplot2, data.table, reshape2, scales, and gridExtra. 
 
-**Contents:** In our DataExplorer folder, there are three subfolders (data, scripts, and output) and a README.md file. 
+**Contents:** In our [DataExplorer](https://github.com/Biol551-CSUN/DataExplorer/tree/main/DataExplorer) folder, there are three subfolders (data, scripts, and output) and a README.md file. 
   * [data:](https://github.com/Biol551-CSUN/DataExplorer/tree/main/DataExplorer/data) This data subfolder contains the dataset used to introduce our R package, DataExplorer. 
     * [Chemical Data](https://github.com/Biol551-CSUN/DataExplorer/blob/main/DataExplorer/data/chemicaldata_maunalua.csv) 
     * [Chem Data Dictionary](https://github.com/Biol551-CSUN/DataExplorer/blob/main/DataExplorer/data/chem_data_dictionary.csv)
