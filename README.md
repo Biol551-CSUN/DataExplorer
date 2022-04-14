@@ -3,6 +3,8 @@ Group 2 repository for group project.
 
 **R package:** DataExplorer
 
+Boxuan Cui (2020). DataExplorer: Automate Data Exploration and Treatment. R package version 0.8.2. https://cran.r-project.org/web/packages/DataExplorer/index.html
+
 **Group members:** Cynthia Petrossian, Sally Heo, Tadeo Zuniga, Heather Carstensen.
 
 **Group member contributions:**
@@ -10,7 +12,7 @@ Group 2 repository for group project.
 * Cynthia Petrossian:
 * Sally Heo:
 * Tadeo Zuniga:
-* Heather Carstensen
+* Heather Carstensen: plot_bar and plot_boxplot functions
 
 DataExplorer is a package designed to assist users in the initial exploration of their data set. With very simple lines of code, the user can clean up their data, visualize values and distributions for each variable, and examine how variables relate to each other. The goal of this package is to allow the user to easily identify patterns within their data without spending time coding individual plots, and so is ideal for Exploratory Data Analysis (EDA). This package utilizes other useful data processing and visualization packages, such as ggplot2, data.table, reshape2, scales, and gridExtra. 
 
