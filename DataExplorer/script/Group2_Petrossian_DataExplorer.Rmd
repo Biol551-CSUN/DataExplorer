@@ -1,0 +1,29 @@
+---
+title: "Data Explorer Petrossian"
+author: "Cynthia Petrossian"
+date: "4/13/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Load Libraries
+```{r}
+library(DataExplorer)
+library(tidyverse)
+library(here)
+```
+
+# Read In Data
+```{r}
+stars <- read_csv(here("Week_10", "Data", "stars.csv"))
+chem <- read_csv(here("Week_7", "Data", "chemicaldata_maunalua.csv"))
+```
+
+# Making Plots
+```{r}
+plot_histogram(chem)
+plot_density(chem)
+```
