@@ -1,0 +1,279 @@
+---
+title: "DataExplorer Package"
+author: "Cynthia Petrossian, Sally Heo, Tadeo Zuniga, Heather Carstensen"
+date: "4/9/2022"
+output: 
+  html_document:
+    toc: TRUE
+    toc_float: TRUE
+    theme: sandstone
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(fig.path = "../output/", echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+
+## Introduction to DataExplorer
+
+Created by Boxuan Cui  
+
+**DataExplorer** is a package designed to assist users in the initial exploration of their data set. With very simple lines of code, the user can clean up their data, visualize values and distributions for each variable, and examine how variables relate to each other.  
+
+Data exploration is an important aspect to the process of visualization and creating models, but it can be very time consuming. The goal of this package is to allow the user to easily identify patterns within their data without spending time coding individual plots, and so is ideal for Exploratory Data Analysis (EDA). EDA is the process of investigating your data to identify patterns and discrepancies, test hypotheses, and check assumptions using summary statistics and graphs. This package utilizes other useful data processing and visualization packages, such as ggplot2, data.table, reshape2, scales, and gridExtra.  
+
+Using the functions of this package, one can generate information about the data, create plots, identify missing data, and complete many more data analysis tasks with just one line of code. This is incredibly useful for EDA and cuts down the analysis time immensely.  
+
+Some of the functions we’ll be covering in this presentation include:
+* plot_str
+* plot_intro
+* plot_histogram
+* plot_density
+* plot_bar
+* plot_boxplot
+* plot_correlation
+* create_report
+* configure_report
+
+As you can probably tell, a majority of these functions are plotting functions. As we go through this presentation, keep in mind all the lines of code we’ve had to use before to create a boxplot or histogram using ggplot. Today we’ll learn how to create these plots, as well as other visualizations, with very simple code – sometimes even one line.  
+
+## Load libraries and data
+
+First install the DataExplorer package:
+```{r}
+# install.packages("DataExplorer")
+```
+
+Then load the packages and read in the data. We're using the chemicaldata_maunalua.csv data frame we used previously during Week 7. 
+
+```{r}
+library(here)
+library(DataExplorer)
+library(tidyverse)
+library(ggthemes)
+
+chem <- read_csv(here("DataExplorer", "data", "chemicaldata_maunalua.csv"))
+```
+
+##### **Introduction to Visualizing Data** #####
+
+Taking a first look at the data, we use two functions  *plot_str()* & *plot_intro()* to visualize our data present and missing. This includes the data type, missing values and how the data types are distributed between the different columns. 
+
+## plot_str function 
+**Arguments**
+
+* **data:** input data
+
+* **type:** type of network diagram. Defaults to diagonalNetwork.
+
+* **max_level:** integer threshold of nested level to be visualized. Minimum 1 nested level and defaults to all.
+
+* **print_network:** logical indicating if network graph should be plotted. Defaults to TRUE.
+... other arguments to be passed to plotting functions. 
+
+```{r str}
+plot_str(chem,
+type = c("diagonal"), 
+max_level = NULL,
+print_network = TRUE)
+
+plot_str(chem,
+type = c("radial"), 
+max_level = NULL,
+print_network = TRUE)
+
+```
+```{r image, echo=FALSE}
+library(magick)
+image_read( "/Users/tadeozuniga/Dropbox/My Mac (Tadeo’s MacBook Pro)/Desktop/R repository/DataExplorer/T_AZuniga/data/diagonal.png")
+
+image_read("/Users/tadeozuniga/Dropbox/My Mac (Tadeo’s MacBook Pro)/Desktop/R repository/DataExplorer/T_AZuniga/data/radial.png")
+#file.choose()
+```
+
+## plot_intro
+
+**Arguments**
+
+* data input data
+
+* geom_label_args  a list of other arguments to geom_label
+
+* title plot title
+
+* ggtheme complete ggplot2 themes. The default is theme_gray.
+
+* theme_config a list of configurations to be passed to theme
+## plot_intro
+```{r plot_intro1}
+plot_intro(chem)
+```
+
+### plot_histogram
+  * This function creates a histogram plot.
+  * To visualize distributions for all continuous features
+```{r histogram}
+plot_histogram(chem) #creating histogram plot
+```
+
+We can see that the plot outputs show the value of each measurement taken on the x axis. The y axis shows the frequency of those particular values in the dataset. We see a similar type of visualization with the next function.
+
+### plot_density
+  * This function creates a density plot.
+  * To visualize density estimates for each continuous feature. 
+```{r density}
+plot_density(chem) #creating density plot
+```
+
+We can see that, very similarly to the histograms before, the x axis shows the values for each measurement taken. The y axis shows the frequency of those values in the dataset. 
+
+Some other useful arguments include:
+
+* **scale_x:** allows you to change the scale of the x axis. 
+* **title = "":** allows you to add a title to the set of plots.
+* **ggtheme = :** allows you to apply a ggplot2 theme to the plots. The default is gray.
+* **nrow = :** allows you to change the number of plots displayed per row. The default is 3 per row (3L). 
+* **ncol = :** allows you to change the number of plots per column. The default is 3 per column (3L).
+
+## plot_qq Function
+Quantile-Quantile plot explains the variance at a chosen distribution, example the variance if the data were to be normally distributed. 
+
+**Arguments**
+
+* **data:** input data
+
+* **by:** feature name to be broken down by. If selecting a continuous feature, it will be grouped by 5 equal ranges, otherwise, all existing categories for a discrete feature. Default is NULL.
+
+* **sampled_rows:** number of rows to sample if data has too many rows. Default is all rows, which means do not sample.
+
+* **geom_qq_args:** a list of other arguments to geom_qq
+
+* **geom_qq_line_args:** a list of other arguments to 
+
+* **geom_qq_line:** title plot title
+
+* **ggtheme:** complete ggplot2 themes. Default is *theme_gray*.
+
+* **theme_config:** a list of configurations to be passed to *theme*
+
+* **nrow:** number of rows per page. Default is 3.
+
+* **ncol:** number of columns per page. Default is 3.
+
+* **parallel:** enable parallel? Default is FALSE.
+
+```{r qq_plot}
+
+qq_data <- chem[, c("Temp_in", "Salinity", "pH", "Season")] #plot basic qqplot, showing the 
+plot_qq(qq_data, sampled_rows = 1000L) 
+```
+
+```{r qq_plot2}
+# Step 2 log transform data to fit the regression line
+log_qq_data <- update_columns(qq_data, c("Temp_in", "Salinity", "pH"), function(x) log(x + 1)) #update columns to long parameters giving a better "fit" line 
+plot_qq(log_qq_data[,c("Temp_in", "Salinity", "pH")], sampled_rows = 1000L)
+
+```
+
+For this plot the data tpe is important for the variable in question. There is a difference when running a discrete vs continuous value. In the 2nd plot it does not run the discrete value for the y dependent variable. 
+```{r qq_plot3}
+qq_data <- chem[, c("Season", "Phosphate", "Salinity", "NN", "pH")]
+
+plot_qq(qq_data,
+        by = "Season", 
+        sampled_rows = 1000L,
+        title = "Season vs Chemical Measurements",
+        ggtheme = theme_classic())
+        
+
+plot_qq(qq_data,
+        by = "Phosphate", 
+        sampled_rows = 1000L,
+        title = "Phosphate vs Chemical Measurements",
+        ggtheme = theme_dark())
+  
+   # set the plotting area into a 1*2 array
+
+```
+
+
+## plot_bar Function
+
+If you would like to see the frequency distribution of discrete variables, use the plot_bar function. This will display bar charts showing the frequency of each character value, faceted by column. 
+
+By default, this function will ignore any columns that have more than 50 different character values. This threshold can be altered with the argument **maxcat =**. 
+
+
+```{r plot_bar_1}
+plot_bar(chem)  #make bar plots for all discrete variables using the chem data
+```
+
+Some other useful arguments include:
+
+* **by =**, allows you to map color within the bars to a second discrete variable. The default setting creates stacked bars with colors corresponding to that variable (see example below). 
+* **by_position =** allows you to change the position argument if you are creating  bars "by" another variable. The default is "fill". Another option is "dodge", which will instead display grouped bars side-by-side rather than stacked bars.
+* **title =** allows you to add a title to the set of plots.
+* **ggtheme =** allows you to apply a ggplot2 theme to the plots.
+* **nrow =** allows you to change the number of plots displayed per row. The default is 3 per row (3L). 
+* **ncol =** allows you to change the number of plots per column. The default is 3 per column (3L).
+
+If you would like to see the distribution of another discrete column within the bars, you can add by = "column name", and now color within each bar will be mapped to that second discrete variable. Let's also add a ggplot2 theme. 
+
+```{r plot_bar_2}
+plot_bar(chem,  #Make bar plots for discrete variables with the chem data
+         by = "Site",  #Map colors within the bars to Site
+         theme = theme_bw())  #Change theme
+```
+
+
+## plot_boxplot Function
+
+The plot_boxplot feature allows you to look at the distribution of numeric values for a chosen discrete column, so this is a way to compare discrete and numeric data. Let's look at the distributions of all numeric columns when we organize the data by Zone.
+
+```{r plot_boxplot}
+plot_boxplot(chem,  #Make boxplots using chem data frame
+             by = "Zone")  #Organize by the discrete variable Zone
+```
+
+Now we see all the values for "Zone" displayed on the y-axis, and continuous numeric values for each plot are on the x-axis. This function can help the user you to identify patterns across variables. For example, the Near Spring shows different value distributions than the other zones for several of the continuous variables, including NN (Nitrate+nitrite), percent_sgd (Relative amount of submarine groundwater discharge in the water), pH, Phosphate, Salinity, Silicate, and TA (Total alkalinity). 
+
+Many of the same arguments listed above for plot_bar can also be used for plot_boxplot. 
+
+<<<<<<< HEAD
+## Function: plot_correlation ##
+
+* This function creates a correlation heatmap for discrete features 
+* Makes it easy to make correlation
+* Analyze correlation in your data
+
+```{r plot_correlation, warning=FALSE, message=FALSE}
+plot_correlation(chem,#Input the data, in this case it is chem
+                 type = c("all", "discrete", "continuous"), #The column types to be included in the correlation plot; "All" = all columns, "discrete" is for discrete features, "continuous" is for continuous. 
+                 maxcat = 5L, #Maximum categories allowed for each discrete feature, can adjust this to increase or decrease this number in correlation plot
+                 title = NULL, #Plot title, NULL is the default (no title)
+                 ggtheme = theme_classic(), #Setting theme_classic
+                 )
+```
+
+## Function: create_report() ##
+
+* This function creates a data profiling report for our Chem Data
+* Organizes the data profiling statistics into a report
+* This is a really important function and runs most of the exploratory data analysis (EDA) functions and gives a output html file. 
+
+
+```{r}
+  create_report(chem, #creates a data profiling report
+    output_file = "chem_data_profile_report",#Output file report generated
+    output_dir = "chem_eda_dataexplorer/", #Saving in this directory
+    # y = "Temp_in", #y is the response variable, (Wanting to know if there is anything related to Temp_in)
+    report_title = "Chem Data EDA Report" #Assigning Title of Report
+  )
+```
+
+
+
+
+
+
+
